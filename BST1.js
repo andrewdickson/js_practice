@@ -148,6 +148,36 @@ function BST(){
 
 }
 
+
+var getHeight = function(subtreeRoot){
+//terminating condition
+    if(subtreeRoot == null){
+        return 0;
+    }
+
+    var leftHeight = getHeight(left);
+    var rightHeight = getHeight(right);
+
+    //the key part there is the 1, when you get to the leaf it will return 0 + 0 + 1;
+    return leftHeight + rightHeight + 1;
+
+};
+
+prototype.BST.isBalanced = function(subtreeRoot){
+    if(subtreeRoot == null){
+        return true;
+    }
+
+    var heightDiff = getHeight(subtreeRoot.left) - getHeight(subtreeRoot.right);
+    if(heightDiff > 1 || heightDiff < 1){
+        return false;
+    }
+
+    return this.isBalanced(subtree.left) && this.isBalanced(subtree.right);
+};
+
+
+
 var nums = new BST();
 nums.insert(23);
 nums.insert(45);
